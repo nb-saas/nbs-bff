@@ -1,0 +1,42 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model SaaS {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  name String
+  region String 
+  env String
+  base String
+  baseInfo SaaSBaseInfo
+}
+
+type SaaSBaseInfo {
+  title String
+  favicon String
+  background_image String
+  legal_notice String
+  privacy_policy String
+  service_terms String
+
+}
+
+
+model MApp{
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  code String @unique
+}
+
+model MAppIn{
+   id String @id @default(auto()) @map("_id") @db.ObjectId
+   code String @unique
+   version String
+}

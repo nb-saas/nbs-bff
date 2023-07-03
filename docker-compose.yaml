@@ -7,3 +7,11 @@ services:
       - '6379:6379'
     command: redis-server
     restart: always
+  mongodb:
+    image: mongo
+    restart: always
+    ports:
+      - '27017:27017'
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=123456
